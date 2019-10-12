@@ -1,0 +1,71 @@
+{{define "admin/index/webset"}}
+{{template "admin/layout/header"}}
+<fieldset>
+	<legend>系统设置</legend>
+	<form class="form-horizontal" method="post">
+		<table class="table table-form">
+			<tbody>
+			<tr>
+				<th class="span2">网站名称</th>
+				<td>
+					<input name="webtitle" value="{{.webtitle | echo}}" class="input-xlarge" title="网站名称" type="text" />
+				</td>
+			</tr>
+			<tr>
+				<th>网站URL</th>
+				<td>
+					<input name="weburl" value="{{.weburl | echo}}" class="input-xlarge" title="网站URL" type="text" />
+				</td>
+			</tr>
+			<tr>
+				<th>副标题</th>
+				<td>
+					<input name="websubtitle" value="{{.websubtitle | echo}}" class="input-xlarge" title="副标题" type="text" />
+				</td>
+			</tr>
+			<tr>
+				<th>邮箱</th>
+				<td>
+					<input name="webemail" value="{{.webemail | echo}}" class="input-xlarge" title="联系邮箱" type="text" />
+				</td>
+			</tr>
+			<tr>
+				<th>列表每页数量</th>
+				<td>
+					<input name="webpagenum" value="{{.webpagenum | echo}}" class="input" title="内容列表每页数量" type="text" />
+				</td>
+			</tr>
+			<tr>
+				<th>网站关键字</th>
+				<td>
+					<input name="webkeyword" value="{{.webkeyword}}" class="span5" title="网站关键字" type="text" />
+				</td>
+			</tr>
+			<tr>
+				<th>网站描述</th>
+				<td>
+					<textarea name="webdesc" rows="4" class="span5" title="网站描述" >{{.webdesc}}</textarea>
+				</td>
+			</tr>
+			<tr>
+				<th>主题模板</th>
+				<td>
+					<input name="webtheme" value="{{.webtheme | echo}}" class="input" title="主题模板" type="text" />
+				</td>
+			</tr>
+
+			</tbody>
+			<tfoot>
+			<tr>
+				<td></td>
+				<td>
+					<button type="submit" class="btn"><i class="icon-ok"></i> 保存</button>
+					<button type="button" class="btn" onclick="javascript:history.back();">取消</button>
+				</td>
+			</tr>
+			</tfoot>
+		</table>
+	</form>
+</fieldset>
+{{template "admin/layout/footer" }}
+{{end}}
