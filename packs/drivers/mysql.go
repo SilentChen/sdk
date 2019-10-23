@@ -1,6 +1,7 @@
 package drivers
 
 import (
+	"../config"
 	"database/sql"
 	"log"
 	"sync"
@@ -20,26 +21,26 @@ func init() {
 	log.Println("driver.mysql.init")
 	var err error
 
-	db_user := util.DynamicSettingInstance.GetString("MysqlUser", util.ConstConfigDefaultValue)
-	db_pwd  := util.DynamicSettingInstance.GetString("MysqlPass", util.ConstConfigDefaultValue)
-	db_host := util.DynamicSettingInstance.GetString("MysqlHost", util.ConstConfigDefaultValue)
-	db_port := util.DynamicSettingInstance.GetString("MysqlPort", util.ConstConfigDefaultValue)
-	db_name := util.DynamicSettingInstance.GetString("MysqlName", util.ConstConfigDefaultValue)
-	db_char := util.DynamicSettingInstance.GetString("MysqlChar", util.ConstConfigDefaultValue)
+	db_user := config.DynamicSettingInstance.GetString("MysqlUser", config.ConstConfigDefaultValue)
+	db_pwd  := config.DynamicSettingInstance.GetString("MysqlPass", config.ConstConfigDefaultValue)
+	db_host := config.DynamicSettingInstance.GetString("MysqlHost", config.ConstConfigDefaultValue)
+	db_port := config.DynamicSettingInstance.GetString("MysqlPort", config.ConstConfigDefaultValue)
+	db_name := config.DynamicSettingInstance.GetString("MysqlName", config.ConstConfigDefaultValue)
+	db_char := config.DynamicSettingInstance.GetString("MysqlChar", config.ConstConfigDefaultValue)
 
 	dns := db_user + ":" + db_pwd + "@tcp(" + db_host + ":" + db_port + ")/" + db_name + "?charset=" + db_char + "&loc=Asia%2FShanghai"
 
-	this.instance, err = sql.Open(util.DynamicSettingInstance.GetString("DbType", util.ConstConfigDefaultValue), dns)
+	this.instance, err = sql.Open(config.DynamicSettingInstance.GetString("DbType", config.ConstConfigDefaultValue), dns)
 
 	err_dping := this.instance.Ping()
 
-	util.CheckErr(err_dping)
+	util.Assert(err_dping)
 
-	db_idel	:= util.Str2int(util.DynamicSettingInstance.GetString("MysqlMaxIdelConns", util.ConstConfigDefaultValue))
-	util.CheckErr(err)
+	db_idel	:= util.Str2int(config.DynamicSettingInstance.GetString("MysqlMaxIdelConns", config.ConstConfigDefaultValue))
+	util.Assert(err)
 
-	db_open := util.Str2int(util.DynamicSettingInstance.GetString("MysqlMaxOpenConns", util.ConstConfigDefaultValue))
-	util.CheckErr(err)
+	db_open := util.Str2int(config.DynamicSettingInstance.GetString("MysqlMaxOpenConns", config.ConstConfigDefaultValue))
+	util.Assert(err)
 
 	this.instance.SetMaxIdleConns(db_idel)
 

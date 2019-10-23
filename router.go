@@ -1,14 +1,17 @@
 package main
 
 import (
-	"./libs/admin"
 	"./libs/api"
-	"./libs/app"
 	"./packs/gin"
 	"fmt"
+	"log"
 	"net/http/pprof"
 	_ "net/http/pprof"
 )
+
+func init() {
+	log.Println("router initing...")
+}
 
 func profRouter(router *gin.Engine) {
 
@@ -66,9 +69,9 @@ func LoadRouters() *gin.Engine {
 
 	// use gin recovery module
 	r.Use(gin.Recovery())
-	gadmin 	:= r.Group("/admin")
+	//gadmin 	:= r.Group("/admin")
 	gapi 	:= r.Group("/api")
-	gapp	:= r.Group("/")
+	//gapp	:= r.Group("/")
 
 	// admin use session meddileware to check login status
 	/*gadmin.Use(func(c *gin.Context) {
@@ -85,18 +88,16 @@ func LoadRouters() *gin.Engine {
 
 	// some handler init
 	apiTest 	:= new(api.Test)
-	adminBase 	:= new(admin.Base)
-	appBase		:= new(app.Base)
 
 	// link the route pattern to the handler
 	gapi.GET("/", apiTest.Index)
 
-	gadmin.GNP("/", adminBase.Invoke)
-	gadmin.GNP("/:ctl/*act", adminBase.Invoke)
+	//gadmin.GNP("/", adminBase.Invoke)
+	//gadmin.GNP("/:ctl/*act", adminBase.Invoke)
 
-	gapp.GNP("/", appBase.Invoke)
-	gapp.GNP("/act/:act", appBase.Invoke)
-	gapp.GNP("/ctl/:ctl/act/:act", appBase.Invoke)
+	//gapp.GNP("/", appBase.Invoke)
+	//gapp.GNP("/act/:act", appBase.Invoke)
+	//gapp.GNP("/ctl/:ctl/act/:act", appBase.Invoke)
 
 	profRouter(r)
 	/*articles := new(app.Articles)

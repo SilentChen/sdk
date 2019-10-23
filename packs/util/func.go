@@ -94,10 +94,14 @@ func (t *tryStruct) Finally(f func()) {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-func CheckErr(err error) {
+func Assert(err error) {
 	if nil != err {
 		panic(err)
 	}
+}
+
+func Debug() {
+
 }
 
 func Int2str(num int) (string) {
