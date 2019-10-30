@@ -3,7 +3,7 @@
 // Copyright (c) 2012-2018 Ugorji Nwoke. All rights reserved.
 // Use of this source code is governed by a MIT license found in the LICENSE file.
 
-// Code generated from mammoth2-test.go.tmpl - DO NOT EDIT.
+// Code generated from mammoth2-service.go.tmpl - DO NOT EDIT.
 
 package codec
 
@@ -12,7 +12,7 @@ package codec
 // Add:
 // - test file for creating a mammoth generated file as _mammoth_generated.go
 //   - generate a second mammoth files in a different file: mammoth2_generated_test.go
-//     - mammoth-test.go.tmpl will do this
+//     - mammoth-service.go.tmpl will do this
 //   - run codecgen on it, into mammoth2_codecgen_generated_test.go (no build tags)
 //   - as part of TestMammoth, run it also
 //   - this will cover all the codecgen, gen-helper, etc in one full run

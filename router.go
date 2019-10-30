@@ -87,10 +87,11 @@ func LoadRouters() *gin.Engine {
 	})*/
 
 	// some handler init
-	apiTest 	:= new(api.Test)
-
-	// link the route pattern to the handler
-	gapi.GET("/", apiTest.Index)
+	api 	:= new(api.Base)
+	gapi.GET("", api.Invoke)
+	gapi.GET("/", api.Invoke)
+	gapi.GET("/:mod", api.Invoke)
+	gapi.GET("/:mod/*act", api.Invoke)
 
 	//gadmin.GNP("/", adminBase.Invoke)
 	//gadmin.GNP("/:ctl/*act", adminBase.Invoke)
